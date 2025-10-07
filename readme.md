@@ -20,14 +20,27 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ## Architecture
 
 ```
-doters-mock/
+FakeServerDOTERS/
 ├─ app/
+│  ├─ controllers/
+│  │  └─ 
+│  ├─ Database/
+│  │  └─
+│  ├─ helpers/
+│  │  └─ 
+│  ├─ repositories/
+│  │  └─ 
+│  ├─ services/
+│  │  └─ 
+│  │  UseCases/
+│  │  └─ 
 │  ├─ __init__.py
 │  └─ routes.py
-├─ controllers/
-│  └─ health_controller.py
-├─ helpers/
-│  └─ response.py
+│
+├─ DB/
+├─ .gitignore
+├─ readme.md
+├─ requirements.txt
 └─ run.py
 ```
 
