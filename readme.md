@@ -20,7 +20,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ## Architecture
 
 ```
-
+doters-mock/
+├─ app/
+│  ├─ __init__.py
+│  └─ routes.py
+├─ controllers/
+│  └─ health_controller.py
+├─ helpers/
+│  └─ response.py
+└─ run.py
 ```
 
 ## Install requirements.txt
