@@ -1,0 +1,85 @@
+# ===============================
+# PYTHON / FLASK .gitignore
+# ===============================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.env.bak/
+env/
+.venv/
+pip-wheel-metadata/
+pip-log.txt
+
+# Flask / runtime files
+instance/
+*.db
+*.sqlite3
+*.sqlite
+*.log
+*.pid
+*.swp
+*.swo
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+*.hypothesis/
+
+# PyInstaller
+# (usually created by a Python script to package the app)
+build/
+dist/
+*.spec
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# pyenv
+.python-version
+
+# dotenv / credentials
+*.env
+*.flaskenv
+config.py.local
+settings_local.py
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Docker / Containers (if you add later)
+docker-compose.override.yml
+*.bak
+
+# Documentation / cache
+docs/_build/
+site/
+
+# Temp or generated files
+tmp/
+temp/
+*.bak
+*.tmp
+*.orig
+*.old
