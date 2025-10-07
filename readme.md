@@ -50,6 +50,24 @@ C:\Users\docto\AppData\Local\Programs\Python\Python313\python.exe run.py
 python run.py
 ```
 
+## Endpoints
+
+| Endpoint | Method | Description |
+|-----------|---------|-------------|
+| `/health` | GET | Check server status |
+| `/v1/security/login` | POST | Generate authentication token |
+| `/v1/security/generate-otp` | POST | Generate OTP for member |
+| `/v1/member-transactions/points/accrual/delivery` | POST | Accrue points |
+| `/v1/member-transactions/points/simulate/delivery` | POST | Simulate points accrual |
+| `/v1/member-transactions/points/redemption/delivery` | POST | Redeem points |
+| `/v1/member-transactions/points/redemption/simulate/delivery` | POST | Simulate redemption |
+| `/v1/member-transactions/points/cancel-transaction` | POST | Cancel a transaction |
+| `/v2/member-transactions/rates` | GET | Get exchange rate |
+| `/v1/member-account/link/rappi` | POST | Link Rappi and Doters accounts |
+| `/v1/member-account/unlink/rappi` | POST | Unlink Rappi and Doters accounts |
+| `/v2/user/signup` | POST | Automatic user signup |
+
+
 ## :hammer_and_wrench:Tech.
 
 - Python
