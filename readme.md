@@ -17,6 +17,26 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 - `Function 4`: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.<br>
 
 
+## Architecture
+
+```
+.
+├─ app/
+│  ├─ __init__.py
+│  ├─ routes/
+│  │  ├─ auth.py
+│  │  ├─ points.py
+│  │  ├─ accounts.py
+│  │  └─ rates.py
+│  ├─ config.py
+│  └─ fixtures.py
+├─ tests/
+│  └─ test_endpoints.py
+├─ requirements.txt
+└─ readme.md
+```
+
+
 ## :play_or_pause_button:How to execute a project
 
 Double click
