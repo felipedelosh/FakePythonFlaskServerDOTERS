@@ -20,31 +20,32 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ## Architecture
 
 ```
-.
-├─ app/
-│  ├─ __init__.py
-│  ├─ routes/
-│  │  ├─ auth.py
-│  │  ├─ points.py
-│  │  ├─ accounts.py
-│  │  └─ rates.py
-│  ├─ config.py
-│  └─ fixtures.py
-├─ tests/
-│  └─ test_endpoints.py
-├─ requirements.txt
-└─ readme.md
+
 ```
 
+## Install requirements.txt
+
+
+```
+C:\Users\docto\AppData\Local\Programs\Python\Python313\python.exe -m pip install -r requirements.txt
+```
+```
+pip install -r requirements.txt
+```
 
 ## :play_or_pause_button:How to execute a project
 
-Double click
+```
+C:\Users\docto\AppData\Local\Programs\Python\Python313\python.exe run.py
+```
+```
+python run.py
+```
 
 ## :hammer_and_wrench:Tech.
 
-- code programing
-- framework
+- Python
+- Flask
 
 ## :warning:Warning.
 
