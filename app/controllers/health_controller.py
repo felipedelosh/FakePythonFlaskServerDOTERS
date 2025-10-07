@@ -1,5 +1,5 @@
 from flask import jsonify
-from app.helpers.response import create_response
+from app.helpers.response import success_response
 
 def health_check():
-    return create_response(True, "Server RUN", 200)
+    return success_response("Server RUN", 200)
