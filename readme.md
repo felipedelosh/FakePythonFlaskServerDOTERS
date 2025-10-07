@@ -28,6 +28,8 @@ FakeServerDOTERS/
 │  │  └─
 │  ├─ helpers/
 │  │  └─ 
+│  ├─ models/
+│  │  └─ 
 │  ├─ repositories/
 │  │  └─ 
 │  ├─ services/

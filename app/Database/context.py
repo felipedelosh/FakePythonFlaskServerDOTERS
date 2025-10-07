@@ -4,8 +4,10 @@ import sqlite3
 class DbContext:
     _instance = None
 
-    def __new__(cls, db_path):
+    def __new__(cls, db_path=None):
         if cls._instance is None:
+            if db_path is None:
+                raise ValueError("DbContext must be initialized with db_path the first time.")
             cls._instance = super().__new__(cls)
             cls._instance._initialize(db_path)
         return cls._instance
@@ -47,6 +49,12 @@ class DbContext:
                 self.conn.commit()
         except sqlite3.Error as e:
             pass
+
+    @classmethod
+    def get_instance(cls):
+        if cls._instance is None:
+            raise ValueError("DbContext has not been initialized. Initialize it first in app/__init__.py.")
+        return cls._instance
 
     def get_connection(self):
         return self.conn
