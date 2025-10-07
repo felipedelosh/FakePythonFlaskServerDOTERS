@@ -39,12 +39,12 @@ class DbContext:
                         created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
                     );
                 ''')
-                self.conn.commit()
                 # self.conn.execute('''
                 #     CREATE TABLE IF NOT EXISTS ??? (
                 #         ...
                 #     )
                 # ''')
+                self.conn.commit()
         except sqlite3.Error as e:
             pass
 
