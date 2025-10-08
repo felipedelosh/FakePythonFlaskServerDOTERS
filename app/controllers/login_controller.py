@@ -5,6 +5,7 @@ from app.helpers.response import error_response
 from app.repositories.login_repository import LoginRepository
 from app.services.login_service import LoginService
 from app.UseCases.login_use_case import LoginUseCase
+from app.helpers.fakeTokenizer import create_token
 
 
 def user_login():
@@ -19,7 +20,16 @@ def user_login():
 
         if not response:
             return error_response("Bad Request Exception", "BAD_REQUEST", 400)
+        
+        email = payload.get("email")
+        claims = {
+            "sub": email,
+            "email": email,
+            "role": "member",
+            "uid": str(repo.get_by_email(email)["id"])
+        }
+        token = create_token(claims)# default TTL = 6 hours
 
-        return success_response(response, 200)
+        return success_response({"token": token}, 200)
     except:
         return error_response("Bad Request Exception", "BAD_REQUEST", 400)
