@@ -8,14 +8,13 @@ from app.UseCases.singup_use_case import SingupUseCase
 
 def user_singup():
     try:
+        # WIP
         payload = request.get_json(force=True)
         repo = SingupRepository()
         service = SingupService(repo)
         use_case = SingupUseCase(service)
 
         response = use_case.execute(payload)
-
-        print(response)
         return success_response("SINGUP", 200)
     except:
         return error_response("SINGUP", "SERVER_ERROR", 500)
