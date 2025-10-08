@@ -4,17 +4,20 @@
 
 ![Banner](Docs/banner.png)
 <br>
-:construction: Status of project :construction:
+:construction: Active Development  
+This repository simulates the **DOTERS loyalty API** using **Python + Flask**, designed as a *mock server* for integration testing between **Rappi** and **Doters** services. :construction:
 <br><br>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+FakeServerDOTERS is a modular Flask application that emulates the real behavior of the **Doters API**, allowing developers to test authentication, signup, points accrual, redemptions, and other loyalty program workflows **without connecting to production services**.
+
+The server follows a **clean layered architecture**, using:
+> `Controller → UseCase → Service → Repository → Database (SQLite)`
+
 
 ## :hammer:Funtions:
 
-- `Function 1`: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.<br>
-- `Function 2`: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.<br>
-- `Function 3`: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.<br>
-- `Function 3a`: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.<br>
-- `Function 4`: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.<br>
+- `/health`: Check server status.<br>
+- `/v1/security/login`: Validate user credentials and return mock auth token.<br>
+- `Function X`: ABC.<br>
 
 
 ## Architecture
@@ -87,10 +90,16 @@ python run.py
 
 - Python
 - Flask
+- SQLite3
+- Layered architecture
+- Postman
 
 ## :warning:Warning.
 
-- limitations.
+- Passwords are stored in plain text (mock-only).
+- OTP and token generation are not secure (for simulation purposes only).
+- Data persistence resets when the SQLite DB file is deleted.
+- Not intended for production environments.
 
 ## Autor
 
