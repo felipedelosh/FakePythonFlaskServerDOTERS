@@ -15,6 +15,7 @@ class DbContext:
     def _initialize(self, db_path):
         self.db_path = db_path
         self.conn = sqlite3.connect(self.db_path, check_same_thread=False)
+        self.conn.execute("PRAGMA foreign_keys = ON;")
         self.cursor = self.conn.cursor()
         self.create_tables()
 
@@ -39,6 +40,20 @@ class DbContext:
                         gender TEXT NOT NULL,
                         residentCountry TEXT NOT NULL,
                         created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+                    );
+                ''')
+                self.conn.execute('''
+                    CREATE TABLE IF NOT EXISTS otps (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        member_id INTEGER NOT NULL,
+                        otp TEXT NOT NULL,
+                        expires_at INTEGER NOT NULL,   -- epoch seconds
+                        channel TEXT,                  -- "SMS" | "EMAIL" | "WEB" etc.
+                        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                        UNIQUE(member_id),
+                        FOREIGN KEY (member_id) REFERENCES users(id)
+                            ON UPDATE CASCADE
+                            ON DELETE CASCADE
                     );
                 ''')
                 # self.conn.execute('''
