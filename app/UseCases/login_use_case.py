@@ -10,6 +10,8 @@ class LoginUseCase:
         password = payload.get("password")
 
         if not email or not password:
-            raise ValueError("email and password are required")
+            return False
+        
+        isCredentialsValid = self.service.validate_credentials(email, password)
 
-        return self.service.validate_credentials(email, password)
+        return isCredentialsValid

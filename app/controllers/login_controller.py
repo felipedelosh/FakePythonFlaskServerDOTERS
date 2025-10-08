@@ -16,6 +16,10 @@ def user_login():
         use_case = LoginUseCase(service)
 
         response = use_case.execute(payload)
-        return success_response("LOGIN", 200)
+
+        if not response:
+            return error_response("Bad Request Exception", "BAD_REQUEST", 400)
+
+        return success_response(response, 200)
     except:
         return error_response("Bad Request Exception", "BAD_REQUEST", 400)

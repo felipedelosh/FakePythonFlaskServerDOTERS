@@ -8,7 +8,6 @@ from app.UseCases.singup_use_case import SingupUseCase
 
 def user_singup():
     try:
-        # WIP
         payload = request.get_json(force=True)
         repo = SingupRepository()
         service = SingupService(repo)
