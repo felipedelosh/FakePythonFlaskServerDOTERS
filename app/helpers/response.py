@@ -26,3 +26,32 @@ def forbidden(msg="Forbidden"):
 
 def server_error(msg="Internal Server Error"):
     return error_response(msg, "INTERNAL_SERVER_ERROR", 500)
+
+def singup_error_duplicated(customerNumber, firstName, lastName):
+    return jsonify({
+        "data": {
+            "navitaireStatus": "Existing",
+            "gravtyStatus": "Existing",
+            "customerNumber": str(customerNumber),
+            "firstName": firstName,
+            "lastName": lastName    
+        },
+        "type": "SUCCESS",
+        "action": "CONTINUE"
+    }), 400
+
+def singup_error_general(key, message, http_code=500):
+    return jsonify({
+        "type": "INVALID_PARAMETER",
+        "action": "CANCEL",
+        "message": "Validation error has occurred",
+        "diagnosticInformation": None,
+        "exceptionId": None,
+        "parameters": [
+            {
+                "key": key,
+                "message": message
+            }
+        ],
+        "code": "GENERIC_VALIDATION_ERROR"
+    }), http_code
