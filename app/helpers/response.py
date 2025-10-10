@@ -18,8 +18,15 @@ def error_response(message="Bad Request Exception", code="BAD_REQUEST", http_cod
         "action": "CANCEL"
     }), http_code
 
-def unauthorized(msg="Unauthorized"):
-    return error_response(msg, "UNAUTHORIZED", 401)
+def unauthorized():
+    return jsonify({
+        "error": {
+            "message": "Unauthorized",
+            "code": "UNAUTHORIZED"
+        },
+        "type": "UNAUTHORIZED",
+        "action": "STOP"
+    }), 401
 
 def forbidden(msg="Forbidden"):
     return error_response(msg, "FORBIDDEN", 403)

@@ -67,5 +67,57 @@ class OtpsRepository:
             return None
 
 
-    def get_otp_by_member_id_and_otp(self) -> Optional[Dict[str, Any]]:
-        pass
+    def get_otp_by_member_id_and_otp(self, member_id: int, otp: str, operation: str) -> Optional[list[Otp]]:
+        try:
+            cur = self.conn.cursor()
+            cur.execute("""
+                SELECT
+                    id,
+                    member_id,
+                    otp,
+                    expires_at,
+                    sendEmail,
+                    sendSMS,
+                    sendWhts,
+                    enrollingSponsor,
+                    returnOtp,
+                    channel,
+                    operation,
+                    maxRedemptionPoints,
+                    language,
+                    newPhone,
+                    created_at
+                FROM otps
+                WHERE member_id = ? AND otp = ? AND operation = ?
+            """, (int(member_id), str(otp), str(operation)))
+
+            rows = cur.fetchall()
+            if not rows:
+                return None
+
+            cols = [c[0] for c in cur.description]
+            results: list[Otp] = []
+            for row in rows:
+                rowdict = dict(zip(cols, row))
+                otp_obj = Otp(
+                    member_id=int(rowdict.get("member_id", 0)),
+                    sendEmail=bool(rowdict.get("sendEmail", 0)),
+                    sendSMS=bool(rowdict.get("sendSMS", 0)),
+                    sendWhts=bool(rowdict.get("sendWhts", 0)),
+                    enrollingSponsor=int(rowdict.get("enrollingSponsor", 0)),
+                    returnOtp=bool(rowdict.get("returnOtp", 0)),
+                    channel=rowdict.get("channel", "WEB"),
+                    operation=rowdict.get("operation", "Generic"),
+                    maxRedemptionPoints=int(rowdict.get("maxRedemptionPoints", 0)),
+                    language=rowdict.get("language", "es-MX"),
+                    newPhone=rowdict.get("newPhone"),
+                    otp=rowdict.get("otp"),
+                    expires_at=rowdict.get("expires_at")
+                )
+                results.append(otp_obj)
+
+            return results
+
+        except sqlite3.Error as e:
+            print(f"[DB ERROR] {e}")
+            return None

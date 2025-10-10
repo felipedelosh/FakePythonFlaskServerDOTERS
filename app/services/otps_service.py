@@ -1,5 +1,5 @@
 # app/services/otps_service.py
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, List, Any
 from app.models.Otp import Otp
 from app.repositories.otps_repository import OtpsRepository
 
@@ -10,5 +10,5 @@ class OtpsService:
     def generate_otp(self, otp: Otp) -> Dict[str, Any]:
         return self.otps_repo.generate_otp(otp)
 
-    def get_otp(self, member_id: int, otp: str) -> Optional[Dict[str, Any]]:
-        return self.otps_repo.get_otp_by_member_id_and_otp()
+    def get_otp(self, member_id: int, otp: str, operation: str) -> Optional[List[Otp]]:
+        return self.otps_repo.get_otp_by_member_id_and_otp(member_id, otp, operation)
