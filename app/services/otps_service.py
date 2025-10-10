@@ -8,18 +8,8 @@ class OtpsService:
         self.otps_repo = otps_repository
         self.users_repo = users_repository
 
-    def issue_for_member(self, member_id: int, ttl_seconds: int = 180, channel: str = "WEB", length: int = 6) -> Dict[str, Any]:
-        return self.otps_repo.issue_for_member(member_id, ttl_seconds, channel, length)
+    def generate_otp(self) -> Dict[str, Any]:
+        return self.otps_repo.generate_otp()
 
-    def issue_for_email(self, email: str, ttl_seconds: int = 180, channel: str = "WEB", length: int = 6) -> Optional[Dict[str, Any]]:
-        user = self.users_repo.get_by_email(email)
-        if not user:
-            return None
-        member_id = int(user["id"])
-        return self.issue_for_member(member_id, ttl_seconds, channel, length)
-
-    def validate(self, member_id: int, otp: str) -> bool:
-        return self.otps_repo.validate(member_id, otp)
-
-    def cleanup_expired(self) -> int:
-        return self.otps_repo.cleanup_expired()
+    def get_otp(self, member_id: int, otp: str) -> Optional[Dict[str, Any]]:
+        return self.otps_repo.get_otp_by_member_id_and_otp()

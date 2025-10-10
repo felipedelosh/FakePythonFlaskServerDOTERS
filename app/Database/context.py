@@ -47,8 +47,17 @@ class DbContext:
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         member_id INTEGER NOT NULL,
                         otp TEXT NOT NULL,
-                        expires_at INTEGER NOT NULL,   -- epoch seconds
-                        channel TEXT,                  -- "SMS" | "EMAIL" | "WEB" etc.
+                        expires_at INTEGER NOT NULL,         -- epoch seconds
+                        sendEmail INTEGER NOT NULL DEFAULT 0 CHECK (sendEmail IN (0,1)),
+                        sendSMS INTEGER NOT NULL DEFAULT 0 CHECK (sendSMS IN (0,1)),
+                        sendWhts INTEGER NOT NULL DEFAULT 0 CHECK (sendWhts IN (0,1)),
+                        enrollingSponsor INTEGER DEFAULT 0,
+                        returnOtp INTEGER NOT NULL DEFAULT 0 CHECK (returnOtp IN (0,1)),
+                        channel TEXT NOT NULL,
+                        operation TEXT NOT NULL,
+                        maxRedemptionPoints INTEGER DEFAULT 0,
+                        language TEXT NOT NULL,
+                        newPhone TEXT,
                         created_at TEXT DEFAULT CURRENT_TIMESTAMP,
                         UNIQUE(member_id),
                         FOREIGN KEY (member_id) REFERENCES users(id)
