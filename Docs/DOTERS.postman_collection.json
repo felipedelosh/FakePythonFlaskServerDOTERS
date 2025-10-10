@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "bddc025e-871e-4fa1-8bbf-54f21bc90bc4",
+		"_postman_id": "acb40c2a-5830-4905-b899-804ff327cbc5",
 		"name": "FakeServerDoters",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33649691"
@@ -40,7 +40,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"myPassword123\"\n}",
+					"raw": "{\n  \"email\": \"rappi_qa@rappi.com\",\n  \"password\": \"kmzwa8awaa\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -67,7 +67,7 @@
 			"response": []
 		},
 		{
-			"name": "OTP",
+			"name": "GENERATE OTP",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -82,7 +82,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"memberId\": \"0123456789\",\n  \"sendEmail\": true,\n  \"sendSMS\": false,\n  \"enrollingSponsor\": 31,\n  \"returnOtp\": true,\n  \"channel\": \"Web\",\n  \"operation\": \"Redemption\",\n  \"maxRedemptionPoints\": 0\n}",
+					"raw": "{\n  \"memberId\": \"1\",\n  \"sendEmail\": true,\n  \"sendSMS\": false,\n  \"sendWhts\": false,\n  \"enrollingSponsor\": 0,\n  \"returnOtp\": true,\n  \"channel\": \"WEB\",\n  \"operation\": \"Redemption\",\n  \"maxRedemptionPoints\": 0,\n  \"language\": \"es-MX\",\n  \"newPhone\": \"1234567890\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -375,7 +375,10 @@
 			"name": "Rates",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		},
@@ -434,7 +437,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"language\": \"es-MX\",\n  \"loyaltyDetails\": {\n    \"enrollingSponsor\": \"1\",\n    \"enrollingChannel\": \"AUTO\"\n  },\n  \"phoneNumber\": \"5590234567\",\n  \"email\": \"testuser@yomail.com\",\n  \"password\": \"HolamUndo5!\",\n  \"activationUrl\": \"doters.com\",\n  \"subscribeToNotifications\": true,\n  \"personalDetails\": {\n    \"name\": {\n      \"firstName\": \"Patrice Claude\",\n      \"lastName\": \"Vandame\",\n      \"title\": null\n    },\n    \"dateOfBirth\": \"1980-12-01T00:00:00.000Z\",\n    \"gender\": \"XX\",\n    \"residentCountry\": \"MX\"\n  }\n}",
+					"raw": "{\n  \"language\": \"es-MX\",\n  \"loyaltyDetails\": {\n    \"enrollingSponsor\": \"1\",\n    \"enrollingChannel\": \"AUTO\"\n  },\n  \"phoneNumber\": \"5590234567\",\n  \"email\": \"rappi_qa@rappi.com\",\n  \"password\": \"kmzwa8awaa\",\n  \"activationUrl\": \"doters.com\",\n  \"subscribeToNotifications\": true,\n  \"personalDetails\": {\n    \"name\": {\n      \"firstName\": \"Andres Felipe\",\n      \"lastName\": \"Hernandez\",\n      \"title\": null\n    },\n    \"dateOfBirth\": \"1991-01-13T00:00:00.000Z\",\n    \"gender\": \"XX\",\n    \"residentCountry\": \"MX\"\n  }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
