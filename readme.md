@@ -75,6 +75,7 @@ python run.py
 | `/health` | GET | Check server status |
 | `/v1/security/login` | POST | Generate authentication token |
 | `/v1/security/generate-otp` | POST | Generate OTP for member |
+| `/v1/security/validate-otp` | POST | Validate OTP for member |
 | `/v1/member-transactions/points/accrual/delivery` | POST | Accrue points |
 | `/v1/member-transactions/points/simulate/delivery` | POST | Simulate points accrual |
 | `/v1/member-transactions/points/redemption/delivery` | POST | Redeem points |
