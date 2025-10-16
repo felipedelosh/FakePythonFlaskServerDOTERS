@@ -65,6 +65,28 @@ class DbContext:
                             ON DELETE CASCADE
                     );
                 ''')
+                self.conn.execute("""
+                CREATE TABLE IF NOT EXISTS member_transactions_accrual (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    hSponsorId INTEGER NOT NULL,
+                    hBitType TEXT NOT NULL,
+                    hBitCategory TEXT NOT NULL,
+                    hMemberId INTEGER NOT NULL,
+                    hBitDate TEXT NOT NULL,
+                    hBitCurrency TEXT NOT NULL,
+                    hBitAmount REAL NOT NULL,
+                    hBitSourceGeneratedId TEXT NOT NULL,
+                    taxAmount REAL,
+                    processingDate TEXT,
+                    pointsRewarded BOOLEAN DEFAULT 1,
+                    pointsRedeemed BOOLEAN DEFAULT 0,
+                    pointsReset BOOLEAN DEFAULT 0,
+                    status TEXT DEFAULT 'SUCCESS',
+                    bitId TEXT,
+                    created_at TEXT DEFAULT (datetime('now')),
+                    FOREIGN KEY (hMemberId) REFERENCES users(id)
+                );
+                """)
                 # self.conn.execute('''
                 #     CREATE TABLE IF NOT EXISTS ??? (
                 #         ...
