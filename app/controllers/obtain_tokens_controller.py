@@ -27,7 +27,7 @@ def obtain_tokens():
         response = use_case.execute(params)
         if not response:
             return render_template("obtain_tokens_error.html")
-        
-        return render_template("login.html")
+        redirect_uri = params.get("redirectUri", "/login")
+        return render_template("login.html", redirect_uri=redirect_uri)
     except:
         return render_template("obtain_tokens_error.html")

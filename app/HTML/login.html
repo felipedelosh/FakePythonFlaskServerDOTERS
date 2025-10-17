@@ -16,7 +16,7 @@
 <body>
   <div class="box">
     <h1>Bienvenido</h1>
-    <form method="POST" action="/login">
+     <form method="POST" action="{{ redirect_uri or '/login' }}">
       <label for="email">Usuario</label>
       <input type="email" id="email" name="email" placeholder="correo@correo.com" required>
 
