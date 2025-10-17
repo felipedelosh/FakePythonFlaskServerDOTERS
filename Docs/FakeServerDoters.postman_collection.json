@@ -1,0 +1,549 @@
+{
+	"info": {
+		"_postman_id": "acb40c2a-5830-4905-b899-804ff327cbc5",
+		"name": "FakeServerDoters",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33649691"
+	},
+	"item": [
+		{
+			"name": "00 - REGISTER",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"language\": \"es-MX\",\n  \"loyaltyDetails\": {\n    \"enrollingSponsor\": \"1\",\n    \"enrollingChannel\": \"AUTO\"\n  },\n  \"phoneNumber\": \"5590234567\",\n  \"email\": \"rappi_qa@rappi.com\",\n  \"password\": \"kmzwa8awaa\",\n  \"activationUrl\": \"doters.com\",\n  \"subscribeToNotifications\": true,\n  \"personalDetails\": {\n    \"name\": {\n      \"firstName\": \"Andres Felipe\",\n      \"lastName\": \"Hernandez\",\n      \"title\": null\n    },\n    \"dateOfBirth\": \"1991-01-13T00:00:00.000Z\",\n    \"gender\": \"XX\",\n    \"residentCountry\": \"MX\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v2/user/signup",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "01 - Register URL CALLBACK",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"memberId\": 1,\n    \"callbackUrl\": \"http://127.0.0.1:4000/otra\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/sso/v2/member/callback/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"sso",
+						"v2",
+						"member",
+						"callback",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/health",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"rappi_qa@rappi.com\",\n  \"password\": \"kmzwa8awaa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/security/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"security",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GENERATE OTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer mock-token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"memberId\": \"1\", //LOAYLTY ID\n  \"sendEmail\": true, //Preguntar a MIC\n  \"sendSMS\": false,\n  \"sendWhts\": false, //Se usa=?\n  \"enrollingSponsor\": 0,\n  \"returnOtp\": true,\n  \"channel\": \"WEB\", // REQUIRED\n  \"operation\": \"Otp\", //Redemption\"-\"Otp\"\n  \"maxRedemptionPoints\": 0,\n  \"language\": \"es-MX\",\n  \"newPhone\": \"1234567890\"//De donde sacamos el teléfono?\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/security/generate-otp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"security",
+						"generate-otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VALIDATE OTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer mock-token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"memberId\": \"1\",\n  \"otp\": 730064,\n  \"operation\": \"Otp\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/security/validate-otp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"security",
+						"validate-otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AKU",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer mock-token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"hSponsorId\": 1,\n  \"hBitType\": \"DELIVERY\",\n  \"hBitCategory\": \"ACCRUAL\",\n  \"hMemberId\": \"1\",\n  \"hBitDate\": \"2025-04-30T05:47:29+05:30\",\n  \"hBitCurrency\": \"MXN\",\n  \"hBitAmount\": 10,\n  \"hBitSourceGeneratedId\": \"AAAA0123456789\",\n  \"taxAmount\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/member-transactions/points/accrual/delivery",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"member-transactions",
+						"points",
+						"accrual",
+						"delivery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accural",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer mock-token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"hSponsorId\": 31,\n  \"hBitType\": \"DELIVERY\",\n  \"hBitCategory\": \"ACCRUAL\",\n  \"hMemberId\": \"0123456789\",\n  \"hBitDate\": \"2025-04-30T05:47:29+05:30\",\n  \"hBitCurrency\": \"MXN\",\n  \"hBitAmount\": 10,\n  \"hBitSourceGeneratedId\": \"AAAA0123456789\",\n  \"taxAmount\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/member-transactions/points/simulate/delivery",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"member-transactions",
+						"points",
+						"simulate",
+						"delivery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "redem",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer mock-token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"hSponsorId\": 31,\n  \"hMemberId\": \"0123456789\",\n  \"hBitDate\": \"2024-11-20T04:12:16\",\n  \"hBitCategory\": \"ACCRUAL\",\n  \"hBitType\": \"PAYMENT_WITH_POINTS\",\n  \"hPayInPoints\": 100,\n  \"otp\": \"123456\",\n  \"hBitSourceGeneratedId\": \"AAAA0123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/member-transactions/points/redemption/delivery",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"member-transactions",
+						"points",
+						"redemption",
+						"delivery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "redem simulate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer mock-token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"hSponsorId\": 31,\n  \"hMemberId\": \"0123456789\",\n  \"hBitDate\": \"2024-11-20T04:12:16\",\n  \"hBitCategory\": \"ACCRUAL\",\n  \"hBitType\": \"PAYMENT_WITH_POINTS\",\n  \"hBitSourceGeneratedId\": \"AAAA0123456789\",\n  \"hPayInPoints\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/member-transactions/points/redemption/simulate/delivery",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"member-transactions",
+						"points",
+						"redemption",
+						"simulate",
+						"delivery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LINK",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer mock-token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"rappiAccount\": \"RAPPI123\",\n  \"tokenSSO\": \"SINGLE-SIGN-ON-KEY\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/member-account/link/rappi",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"member-account",
+						"link",
+						"rappi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UnLINK",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer mock-token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"rappiAccount\": \"RAPPI123\",\n  \"hMemberId\": \"0123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/member-account/unlink/rappi",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"member-account",
+						"unlink",
+						"rappi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer mock-token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"hMemberId\": \"0123456789\",\n  \"hBitDate\": \"2024-11-14T00:41-06:00\",\n  \"hBitSource\": \"ACCRUAL\",\n  \"hProgramId\": \"8\",\n  \"hSponsorId\": 31,\n  \"originalBitId\": \"2R54OHO5QDZSL2FHHH6JL2WOYT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/member-transactions/points/cancel-transaction",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"member-transactions",
+						"points",
+						"cancel-transaction"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
