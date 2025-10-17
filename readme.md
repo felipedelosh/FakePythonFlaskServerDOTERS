@@ -72,7 +72,7 @@ python run.py
 
 | Endpoint | Method | Description |
 |-----------|---------|-------------|
-| `/` | GET | SEND params to reditect /LOGIN |
+| `/` | GET | SEND params to reditect /login |
 | `/login` | GET | Open Browser and login in APP |
 | `/health` | GET | Check server status |
 | `/v1/security/login` | POST | Generate authentication token |
@@ -88,6 +88,13 @@ python run.py
 | `/v1/member-account/unlink/rappi` | POST | Unlink Rappi and Doters accounts |
 | `/v2/user/signup` | POST | Automatic user signup |
 
+
+## Obtain TOKENS
+
+if you be register in APP go to link and fill the credentials:
+```
+http://127.0.0.1:5000/?clientId=1&clientSecret=kmzwa8awaa&language=es-MX&redirectUri=http://127.0.0.1:4000/callback&state=xyz&go_to_page=login&utm_source=test
+```
 
 ## :hammer_and_wrench:Tech.
 
