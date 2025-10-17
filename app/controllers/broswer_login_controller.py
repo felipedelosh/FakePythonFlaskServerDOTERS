@@ -5,7 +5,9 @@ from app.helpers.response import error_response
 from app.repositories.login_repository import LoginRepository
 from app.services.login_service import LoginService
 from app.UseCases.login_use_case import LoginUseCase
-from app.helpers.fakeTokenizer import create_token
+from app.helpers.fakeTokenizer import create_id_token
+from app.helpers.fakeTokenizer import create_access_token
+from app.helpers.fakeTokenizer import create_refresh_token
 
 def browser_login():
     return render_template("login.html")
@@ -32,16 +34,27 @@ def browser_login_post():
         if not response:
             return error_response("INVALID USR AND PASS", "UNAUTHORIZED", 401)
         
-        claims = {
-            "sub": email,
-            "email": email,
-            "role": "member",
-            "uid": str(repo.get_by_email(email)["id"])
-        }
-        id_token = create_token(claims)
-        
+        user_row = repo.get_by_email(email)
+        uid = str(user_row["id"])
+        full_name = f'{user_row.get("firstName","")} {user_row.get("lastName","")}'.strip() or email
+        client_id = request.form.get("clientId") or request.args.get("clientId") or "doters-app"
+
+        id_token = create_id_token(
+            {"sub": email, "email": email, "uid": uid, "name": full_name, "role": "member"},
+            client_id=client_id,
+            ttl_seconds=60*60*6
+        )
+
+        access_token = create_access_token(
+            subject=email,
+            client_id=client_id,
+            scope=["openid", "offline_access", "email", "profile"],
+            ttl_seconds=60*60,
+            extra_claims={"uid": uid, "role": "member"}
+        )
+
         data = {
-            "access_token": "sqY5n6QcgvSNX7lAf78d2A6hJxop-439Rhr0cqO4nuD",
+            "access_token": access_token,
             "expires_in": "86400",
             "id_token": id_token,
             "refresh_token": "0WsteyOWU14Ew-t-vf7KEKOg3SSr6ak1PJMWV9n8abg",
