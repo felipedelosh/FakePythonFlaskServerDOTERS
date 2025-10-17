@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Partner Request – Error</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --fg:#0f172a; --muted:#64748b; --bg:#f8fafc; --card:#ffffff; --err:#b91c1c; --ok:#16a34a; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--fg); }
+    .wrap { max-width: 980px; margin: 40px auto; padding: 0 16px; }
+    .card { background: var(--card); border-radius: 14px; box-shadow: 0 10px 30px rgba(2,6,23,.06); padding: 24px; }
+    h1 { margin: 0 0 6px; font-size: 22px; }
+    p.lead { margin: 0 0 18px; color: var(--muted); }
+    .error { background: #fee2e2; border: 1px solid #fecaca; color: var(--err); padding: 12px 14px; border-radius: 10px; margin: 12px 0 20px; }
+    .pill { display:inline-block; padding: 4px 10px; border-radius: 999px; background:#f1f5f9; color:#0f172a; font-size: 12px; margin: 0 8px 8px 0; }
+    details { margin: 12px 0 22px; }
+    details > summary { cursor: pointer; color:#0f172a; font-weight: 600; }
+    table { width:100%; border-collapse: collapse; font-size: 14px; margin-top: 12px; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+    th { background:#f8fafc; }
+    code, pre { background:#0f172a; color:#e2e8f0; padding: 2px 6px; border-radius: 6px; }
+    .footer { margin-top: 22px; color: var(--muted); font-size: 12px; text-align: center; }
+    .btn { display:inline-block; padding:10px 14px; border-radius:10px; background:#0f172a; color:#fff; text-decoration:none; font-weight:600; }
+    .grid { display:grid; gap:14px; grid-template-columns: 1fr; }
+    @media (min-width: 820px){ .grid { grid-template-columns: 1fr 1fr; } }
+    .kv { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px; }
+    .kv h3 { margin:0 0 8px; font-size:14px; color:#334155; }
+    .kv ul { list-style:none; padding:0; margin:0; }
+    .kv li { margin:6px 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Partner Request Error</h1>
+      <p class="lead">We couldn’t process your request because some parameters are missing or invalid.</p>
+
+      <div class="error">
+        <strong>{{ error_title or "Invalid Partner Request" }}</strong><br/>
+        <span>{{ error_message or "Please review the required parameters below and try again." }}</span>
+      </div>
+
+      {% if missing_params %}
+      <p><strong>Missing parameters:</strong></p>
+      <div>
+        {% for p in missing_params %}
+          <span class="pill">{{ p }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="grid" style="margin-top: 18px;">
+        <div class="kv">
+          <h3>Received (query string)</h3>
+          <ul>
+            {% if received_params %}
+              {% for k, v in received_params.items() %}
+                <li><code>{{ k }}</code>: <code>{{ v }}</code></li>
+              {% endfor %}
+            {% else %}
+              <li><em>No query parameters were received.</em></li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="kv">
+          <h3>How to retry</h3>
+          <p>Ensure you include all required parameters and retry your request.</p>
+          <p>
+            <a class="btn" href="/">Try again</a>
+          </p>
+        </div>
+      </div>
+
+      <details>
+        <summary>Parameters documentation</summary>
+        <table>
+          <thead>
+            <tr>
+              <th>Params</th>
+              <th>Description</th>
+              <th>Required</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>clientId</td>
+              <td>client Id assigned to the partner</td>
+              <td>Yes</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>clientSecret</td>
+              <td>client secret assigned to the partner</td>
+              <td>Yes</td>
+              <td>kmzwa8awaa</td>
+            </tr>
+            <tr>
+              <td>language</td>
+              <td>code for the language</td>
+              <td>Yes</td>
+              <td>es-MX</td>
+            </tr>
+            <tr>
+              <td>redirectUri</td>
+              <td>redirection to where the web app will be sent</td>
+              <td>Yes</td>
+              <td><a href="http://127.0.0.1:4000/example" target="_blank" rel="noopener noreferrer">http://127.0.0.1:4000/example</a></td>
+            </tr>
+            <tr>
+              <td>state</td>
+              <td>the state sent from the web app to authenticate the client</td>
+              <td>Yes</td>
+              <td>A123B4cd56</td>
+            </tr>
+            <tr>
+              <td>go_to_page</td>
+              <td>parameter to go to a certain page of the site</td>
+              <td>No</td>
+              <td>
+                <ul>
+                  <li>signup</li>
+                  <li>login</li>
+                  <li>password-reset</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>utmsParams</td>
+              <td>parameters for measurement with UTMS</td>
+              <td>No</td>
+              <td>
+                utm_medium=test &nbsp; utm_source=test &nbsp; utm_campaign=test
+                &nbsp; utm_content=test &nbsp; utm_term=test &nbsp; utm_id=test
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+
+      <div class="footer">
+        This page is part of the DOTERS SSO mock environment for partner integration testing.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
