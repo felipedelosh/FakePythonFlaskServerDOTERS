@@ -92,6 +92,7 @@ class DbContext:
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         member_id INTEGER NOT NULL,
                         callback_url TEXT NOT NULL,
+                        created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
                         UNIQUE (member_id, callback_url),
                         FOREIGN KEY (member_id) REFERENCES users(id)
                     )
