@@ -29,5 +29,9 @@ class ObtainTokens:
         isCredentialsValid = self.login_service.validate_credentials(usr["email"], params["clientSecret"])
         if not isCredentialsValid:
             return False
+        
+        isCallbackValid = self.callback_service.get_by_member_and_url(params["clientId"], params["redirectUri"])
+        if not isCallbackValid:
+            return False
 
         return True

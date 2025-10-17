@@ -10,3 +10,6 @@ class MemberCallbackRedirectService:
 
     def save_callback(self, callback: MemberCallbackRedirect) -> Optional[Dict[str, Any]]:
         return self.callback_repo.save(callback)
+
+    def get_by_member_and_url(self, member_id: int, callback_url: str) -> Optional[Dict[str, Any]]:
+        return self.callback_repo.get_by_member_and_url(member_id, callback_url)
