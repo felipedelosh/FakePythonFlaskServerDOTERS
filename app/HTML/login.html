@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Iniciar sesión</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f6f7f9; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .box { background: white; padding: 32px; border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.1); width: 320px; }
+    h1 { font-size: 22px; text-align: center; margin-bottom: 16px; }
+    label { display: block; margin: 8px 0 4px; }
+    input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; }
+    button { width: 100%; margin-top: 16px; padding: 10px; background: #16a34a; color: white; border: none; border-radius: 8px; cursor: pointer; }
+    button:hover { background: #12873c; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Bienvenido</h1>
+    <form method="POST" action="/login">
+      <label for="email">Usuario</label>
+      <input type="email" id="email" name="email" placeholder="correo@correo.com" required>
+
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" name="password" placeholder="********" required>
+
+      <button type="submit">Iniciar sesión</button>
+    </form>
+  </div>
+</body>
+</html>
