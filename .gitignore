@@ -83,3 +83,32 @@ temp/
 *.tmp
 *.orig
 *.old
+
+# ===============================
+# NODE.JS / EXPRESS / CALLBACK SERVER
+# ===============================
+
+# Dependency directories
+CALLBACK_NODE_JS/node_modules/
+
+# Logs
+CALLBACK_NODE_JS/npm-debug.log*
+CALLBACK_NODE_JS/yarn-debug.log*
+CALLBACK_NODE_JS/yarn-error.log*
+CALLBACK_NODE_JS/pnpm-debug.log*
+
+# Environment variables
+CALLBACK_NODE_JS/.env
+CALLBACK_NODE_JS/.env.local
+CALLBACK_NODE_JS/.env.*.local
+
+# Build output
+CALLBACK_NODE_JS/dist/
+CALLBACK_NODE_JS/build/
+CALLBACK_NODE_JS/.next/
+CALLBACK_NODE_JS/out/
+
+# IDE/editor artifacts (just in case)
+CALLBACK_NODE_JS/.vscode/
+CALLBACK_NODE_JS/.idea/
+CALLBACK_NODE_JS/*.log
