@@ -16,7 +16,13 @@ The server follows a **clean layered architecture**, using:
 ## :hammer:Funtions:
 
 - `/health`: Check server status.<br>
-- `/v1/security/login`: Validate user credentials and return mock auth token.<br>
+- `/`: BROWSER: Login in the app.<br>
+- `/login`: BROSWER-REDIRECT: after / you can login to get callback url with all tokens.<br>
+- `/v2/user/signup`: POSTMAN: Create a new user in APP.<br>
+- `/sso/v2/member/callback/register`: POSTMAN: Create a callback url to user.<br>
+- `/v1/security/generate-otp`: POSTMAN: Generate OTP for a member.<br>
+- `/v1/security/validate-otp`: POSTMAN: Validates a OTP for a member.<br>
+- `/v1/security/login`: POSTMAN: Validate user credentials and return mock auth token.<br>
 - `Function X`: ABC.<br>
 
 
@@ -73,7 +79,7 @@ python run.py
 | Endpoint | Method | Description |
 |-----------|---------|-------------|
 | `/` | GET | SEND params to reditect /login |
-| `/login` | GET | Open Browser and login in APP |
+| `/login` | GET | login only via / |
 | `/health` | GET | Check server status |
 | `/v1/security/login` | POST | Generate authentication token |
 | `/v1/security/generate-otp` | POST | Generate OTP for member |
@@ -89,12 +95,14 @@ python run.py
 | `/v2/user/signup` | POST | Automatic user signup |
 
 
-## Obtain TOKENS
+## 🔐 Obtaining Tokens (Partner Request Flow)
 
 if you be register in APP go to link and fill the credentials:
 ```
 http://127.0.0.1:5000/?clientId=1&clientSecret=kmzwa8awaa&language=es-MX&redirectUri=http://127.0.0.1:4000/callback&state=xyz&go_to_page=login&utm_source=test
 ```
+
+if all be OK you redirect to CALLBACK url.
 
 ## :hammer_and_wrench:Tech.
 
