@@ -87,6 +87,15 @@ class DbContext:
                     FOREIGN KEY (hMemberId) REFERENCES users(id)
                 );
                 """)
+                self.conn.execute('''
+                    CREATE TABLE IF NOT EXISTS member_callback_redirect (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        member_id INTEGER NOT NULL,
+                        callback_url TEXT NOT NULL,
+                        UNIQUE (member_id, callback_url),
+                        FOREIGN KEY (member_id) REFERENCES users(id)
+                    )
+                ''')
                 # self.conn.execute('''
                 #     CREATE TABLE IF NOT EXISTS ??? (
                 #         ...
