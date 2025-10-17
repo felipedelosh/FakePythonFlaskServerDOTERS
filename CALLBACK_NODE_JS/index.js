@@ -16,10 +16,11 @@ app.get('/', (req, res) => {
 //callback
 app.get('/callback', async (req, res) => {
   try {
+    console.log("[CALLBACK]");
     const params = req.query;
     console.log("[CALLBACK] Recibidos:", params);
 
-    const jsonString = JSON.stringify(params);
+    const jsonString = JSON.stringify(params, null, 2);
     const base64Encoded = Buffer.from(jsonString).toString('base64');
 
     const body = {
@@ -39,11 +40,33 @@ app.get('/callback', async (req, res) => {
       }
     );
 
-    res.send({
-      status: 'success',
-      data_sent: body,
-      rappi_response: response.data
-    });
+    const html = `
+      <html>
+        <head>
+          <title>Resultado del Callback</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; background: #f8f8f8; }
+            pre { background: #eee; padding: 15px; border-radius: 5px; overflow-x: auto; }
+            h2 { color: #333; }
+          </style>
+        </head>
+        <body>
+          <h1>✅ Callback recibido</h1>
+
+          <h2>Petición entrante (params recibidos del SSO Fake)</h2>
+          <pre>${jsonString}</pre>
+
+          <h2>Petición saliente (programData base64)</h2>
+          <pre>${base64Encoded}</pre>
+
+          <h2>Respuesta de Rappi</h2>
+          <pre>${JSON.stringify(response.data, null, 2)}</pre>
+        </body>
+      </html>
+    `;
+
+    res.send(html);
+
   } catch (error) {
     console.error("[CALLBACK] Error:", error.message);
     res.status(500).send({
@@ -52,6 +75,7 @@ app.get('/callback', async (req, res) => {
     });
   }
 });
+
 
 app.listen(port, () => {
   console.log(`Callback server corriendo en http://127.0.0.1:${port}`);

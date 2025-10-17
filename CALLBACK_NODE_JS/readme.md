@@ -1,6 +1,6 @@
 npm init -y
 npm install express axios
-node server.js
+node index.js
 
 Example BROSWER URL:
 

@@ -1,0 +1,16 @@
+{
+  "name": "callback_node_js",
+  "version": "1.0.0",
+  "description": "npm init -y\r npm install express axios\r node server.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "express": "^5.1.0"
+  }
+}
