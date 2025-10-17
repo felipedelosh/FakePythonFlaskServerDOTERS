@@ -24,7 +24,9 @@ class MemberCallbackRedirectRegister:
         if not usr:
             return None
 
-        print(payload)
+        saved = self.callback_service.save_callback(callback)
+        if not saved:
+            return None
 
 
-        return True
+        return saved
