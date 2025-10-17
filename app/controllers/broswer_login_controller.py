@@ -36,6 +36,6 @@ def browser_login_post():
             "state": "12345"
         }
 
-        return success_response("LOGIN OK", 200)
+        return success_response(data, 200)
     except:
         return error_response("Server Error", "INTERNAL_ERROR", 500)

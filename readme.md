@@ -72,7 +72,8 @@ python run.py
 
 | Endpoint | Method | Description |
 |-----------|---------|-------------|
-| `/login` | WWW | Open Browser and login in APP |
+| `/` | GET | SEND params to reditect /LOGIN |
+| `/login` | GET | Open Browser and login in APP |
 | `/health` | GET | Check server status |
 | `/v1/security/login` | POST | Generate authentication token |
 | `/v1/security/generate-otp` | POST | Generate OTP for member |
