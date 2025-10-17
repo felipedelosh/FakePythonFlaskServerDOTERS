@@ -1,6 +1,7 @@
 # app/UseCases/sso_member_callback_redirect_register_use_case.py
 from app.services.member_callback_redirect_service import MemberCallbackRedirectService
 from app.services.user_service import UserService
+from app.models.MemberCallbackRedirect import MemberCallbackRedirect
 
 class MemberCallbackRedirectRegister:
     def __init__(self, callback_service: MemberCallbackRedirectService, user_service: UserService):
@@ -16,7 +17,12 @@ class MemberCallbackRedirectRegister:
         for field in required_fields:
             if field not in payload:
                 return None
-            
+        
+        callback = MemberCallbackRedirect.from_payload(payload)
+
+        usr = self.user_service.get_user_by_id(callback.member_id)
+        if not usr:
+            return None
 
         print(payload)
 

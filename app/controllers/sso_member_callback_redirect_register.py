@@ -23,6 +23,6 @@ def sso_member_callback_redirect_register():
         if not response:
             return error_response("CALLBACK REGISTER", "SERVER_ERROR", 400)
 
-        return success_response("LOKO", 200)
+        return success_response(response, 200)
     except:
         return error_response("CALLBACK REGISTER", "SERVER_ERROR", 500)
