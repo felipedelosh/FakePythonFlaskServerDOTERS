@@ -53,11 +53,13 @@ def browser_login_post():
             extra_claims={"uid": uid, "role": "member"}
         )
 
+        refresh_token = create_refresh_token(32)
+
         data = {
             "access_token": access_token,
             "expires_in": "86400",
             "id_token": id_token,
-            "refresh_token": "0WsteyOWU14Ew-t-vf7KEKOg3SSr6ak1PJMWV9n8abg",
+            "refresh_token": refresh_token,
             "scope": "openid offline_access email profile",
             "token_type": "Bearer",
             "state": "12345"
