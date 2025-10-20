@@ -7,6 +7,28 @@
 	},
 	"item": [
 		{
+			"name": "health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/health",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "00 - REGISTER",
 			"request": {
 				"method": "POST",
@@ -85,12 +107,21 @@
 			"response": []
 		},
 		{
-			"name": "health",
+			"name": "02 - USER_INFO",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "X-Channel",
+						"value": "web"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJkb3RlcnMtYXBwIiwiZW1haWwiOiJyYXBwaV9xYUByYXBwaS5jb20iLCJleHAiOjE3NjEwMDI1MDcsImlhdCI6MTc2MDk4MDkwNywiaXNzIjoiZG90ZXJzLW1vY2siLCJuYW1lIjoiQW5kcmVzIEZlbGlwZSBIZXJuYW5kZXoiLCJyb2xlIjoibWVtYmVyIiwic3ViIjoicmFwcGlfcWFAcmFwcGkuY29tIiwidG9rZW5fdXNlIjoiaWQiLCJ1aWQiOiIxIn0.LmZ4MXM3IpSrlLQbiNsAO9A9R0cy2NBgc0A2y-39C7Y"
+					}
+				],
 				"url": {
-					"raw": "http://127.0.0.1:5000/health",
+					"raw": "http://127.0.0.1:5000/sso/v2/user",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -100,7 +131,65 @@
 					],
 					"port": "5000",
 					"path": [
-						"health"
+						"sso",
+						"v2",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 - REFRESH_TOKEN",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Channel",
+						"value": "web"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic OaV3_K9m3JBy8tAAduahoISynSFMzu_2E1B-KHsK2OM"
+					},
+					{
+						"key": "Cookie",
+						"value": "_abck=1A09ABF53FFA82687B448EE6F43D165C..."
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "refresh_token",
+							"value": "cpi_S4TSVbMcnkTER533FqUQ5lM4cm4MhVveHhtgZ2Y",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/sso/v2/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"sso",
+						"v2",
+						"token"
 					]
 				}
 			},

@@ -97,6 +97,18 @@ class DbContext:
                         FOREIGN KEY (member_id) REFERENCES users(id)
                     )
                 ''')
+                self.conn.execute('''
+                    CREATE TABLE IF NOT EXISTS refresh_tokens (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        memberId INTEGER NOT NULL,
+                        refresh_token TEXT NOT NULL UNIQUE,
+                        created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (memberId) REFERENCES users(id)
+                            ON UPDATE CASCADE
+                            ON DELETE CASCADE,
+                        UNIQUE(memberId)
+                    )
+                ''')
                 # self.conn.execute('''
                 #     CREATE TABLE IF NOT EXISTS ??? (
                 #         ...

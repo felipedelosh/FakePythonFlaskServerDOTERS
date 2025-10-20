@@ -11,6 +11,7 @@ from app.controllers.member_transactions_accrual import member_transactions_accu
 from app.controllers.sso_member_callback_redirect_register import sso_member_callback_redirect_register
 from app.controllers.sso_user_controller import get_user_info
 from app.controllers.obtain_tokens_controller import obtain_tokens
+from app.controllers.refresh_token_controller import refresh_token
 
 BASE_DIR = os.path.dirname(__file__)
 app = Flask(__name__, template_folder=os.path.join(BASE_DIR, "HTML"))
@@ -27,5 +28,7 @@ def configure_routes(app):
     app.route('/v1/member-transactions/points/accrual/delivery', methods=['POST'])(member_transactions_accural)
     app.route('/sso/v2/member/callback/register', methods=['POST'])(sso_member_callback_redirect_register)
     app.route('/sso/v2/user', methods=['GET'])(get_user_info)
-    
+    app.route('/sso/v2/token', methods=['POST'])(refresh_token)
+
+
 configure_routes(app)

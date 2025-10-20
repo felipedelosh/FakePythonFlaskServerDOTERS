@@ -2,12 +2,15 @@
 from flask import render_template, request, redirect
 from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
 from app.helpers.response import error_response
+from app.repositories.refresh_token_repository import RefreshTokenRepository
 from app.repositories.login_repository import LoginRepository
 from app.services.login_service import LoginService
+from app.services.refresh_token_service import RefreshTokenService
 from app.UseCases.login_use_case import LoginUseCase
 from app.helpers.fakeTokenizer import create_id_token
 from app.helpers.fakeTokenizer import create_access_token
 from app.helpers.fakeTokenizer import create_refresh_token
+from app.models.RefreshToken import RefreshToken
 
 def browser_login():
     return render_template("login.html")
@@ -54,6 +57,9 @@ def browser_login_post():
         )
 
         refresh_token = create_refresh_token(32)
+        refresh_token_repository = RefreshTokenRepository()
+        refresh_token_service = RefreshTokenService(refresh_token_repository)
+        refresh_token_entity = RefreshToken(uid, refresh_token)
 
         data = {
             "access_token": access_token,
@@ -64,6 +70,8 @@ def browser_login_post():
             "token_type": "Bearer",
             "state": "12345"
         }
+
+        refresh_token_service.save(refresh_token_entity)
 
         parsed = urlparse(redirect_uri)
         existing_qs = dict(parse_qsl(parsed.query, keep_blank_values=True))

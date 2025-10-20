@@ -7,9 +7,6 @@ class GetUserInfo:
         pass
 
     def execute(self, x_chanel, sso_token):
-        print(x_chanel)
-        print(sso_token)
-
         token = sso_token.strip()
         if token.startswith("Bearer "):
             token = token.split(" ", 1)[1].strip()
