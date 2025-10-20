@@ -142,3 +142,17 @@ def verify_token(token: str, secret: Optional[str] = None) -> bool:
         return True
     except Exception:
         return False
+
+def decode_token(token: str) -> dict:
+    """Devuelve el payload decodificado sin verificar la firma (solo para mock)."""
+    try:
+        parts = token.split(".")
+        if len(parts) != 3:
+            return {}
+        payload_b64 = parts[1]
+        padded = payload_b64 + "=" * (-len(payload_b64) % 4)
+        payload_bytes = base64.urlsafe_b64decode(padded.encode("ascii"))
+        return json.loads(payload_bytes.decode("utf-8"))
+    except Exception:
+        return {}
+
