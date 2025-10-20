@@ -29,4 +29,4 @@ class GetUserInfo:
             "title": None
         }
 
-        return jsonify(payload), 200
+        return jsonify(user_data), 200
