@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "acb40c2a-5830-4905-b899-804ff327cbc5",
+		"_postman_id": "43e0c06b-c337-4d4c-be8c-3dbe8c84c851",
 		"name": "FakeServerDoters",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33649691"
@@ -196,6 +196,54 @@
 			"response": []
 		},
 		{
+			"name": "OP1 - AKU",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2ZjI1NDgyLTI5Y2YtNGFjOC1iOWMyLTVhMmQ3MWI3MDJmNiIsInJvbGUiOlsiZGVsaXZlcnkiXSwiaWF0IjoxNzYxNjc0NTY0LCJleHAiOjE3NjE2OTYxNjR9.VCaPEhJ5DlrUI7-RxJGJtcB8a25yAFfoHXNzYlBIFjs"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"hSponsorId\": 31,\n  \"hBitType\": \"DELIVERY\",\n  \"hBitCategory\": \"ACCRUAL\",\n  \"hMemberId\": \"5520129006\",\n  \"hBitDate\": \"2025-10-28T15:00:00Z\",\n  \"hBitCurrency\": \"MXN\",\n  \"hBitAmount\": 100.5,\n  \"hBitSourceGeneratedId\": \"RAPPI-191000068534-ORDER12345\",\n  \"taxAmount\": 15.75\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/v1/member-transactions/rappi/points/accrual",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"member-transactions",
+						"rappi",
+						"points",
+						"accrual"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "LOGIN",
 			"request": {
 				"method": "POST",
@@ -312,94 +360,6 @@
 						"v1",
 						"security",
 						"validate-otp"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "AKU",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer mock-token"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"hSponsorId\": 1,\n  \"hBitType\": \"DELIVERY\",\n  \"hBitCategory\": \"ACCRUAL\",\n  \"hMemberId\": \"1\",\n  \"hBitDate\": \"2025-04-30T05:47:29+05:30\",\n  \"hBitCurrency\": \"MXN\",\n  \"hBitAmount\": 10,\n  \"hBitSourceGeneratedId\": \"AAAA0123456789\",\n  \"taxAmount\": 1\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/v1/member-transactions/points/accrual/delivery",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"v1",
-						"member-transactions",
-						"points",
-						"accrual",
-						"delivery"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Accural",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer mock-token"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"hSponsorId\": 31,\n  \"hBitType\": \"DELIVERY\",\n  \"hBitCategory\": \"ACCRUAL\",\n  \"hMemberId\": \"0123456789\",\n  \"hBitDate\": \"2025-04-30T05:47:29+05:30\",\n  \"hBitCurrency\": \"MXN\",\n  \"hBitAmount\": 10,\n  \"hBitSourceGeneratedId\": \"AAAA0123456789\",\n  \"taxAmount\": 1\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/v1/member-transactions/points/simulate/delivery",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"v1",
-						"member-transactions",
-						"points",
-						"simulate",
-						"delivery"
 					]
 				}
 			},
