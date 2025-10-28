@@ -26,6 +26,7 @@ def configure_routes(app):
     app.route('/v1/security/generate-otp', methods=['POST'])(generate_otp)
     app.route('/v1/security/validate-otp', methods=['POST'])(validate_otp)
     app.route('/v1/member-transactions/points/accrual/delivery', methods=['POST'])(member_transactions_accural)
+    app.route('/v1/member-transactions/rappi/points/accrual', methods=['POST'])(member_transactions_accural)
     app.route('/sso/v2/member/callback/register', methods=['POST'])(sso_member_callback_redirect_register)
     app.route('/sso/v2/user', methods=['GET'])(get_user_info)
     app.route('/sso/v2/token', methods=['POST'])(refresh_token)
