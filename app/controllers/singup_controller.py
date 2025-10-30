@@ -17,7 +17,6 @@ def user_singup():
 
         response = use_case.execute(payload)
 
-
         if not response:
             return error_response("SINGUP", "SERVER_ERROR", 500)
         

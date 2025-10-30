@@ -36,15 +36,15 @@ def server_error(msg="Internal Server Error"):
 
 def singup_error_duplicated(customerNumber, firstName, lastName):
     return jsonify({
-        "data": {
-            "navitaireStatus": "Existing",
-            "gravtyStatus": "Existing",
-            "customerNumber": str(customerNumber),
-            "firstName": firstName,
-            "lastName": lastName    
-        },
-        "type": "SUCCESS",
-        "action": "CONTINUE"
+        "message": "Error has occurred",
+        "type": "INVALID",
+        "action": "CANCEL",
+        "parameters": [
+            {
+                "key": customerNumber,
+                "message": f"{firstName} {lastName}"
+            }
+        ]
     }), 400
 
 def singup_error_general(key, message, http_code=500):
